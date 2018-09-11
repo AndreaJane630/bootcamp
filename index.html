@@ -1,0 +1,391 @@
+<!-- Temp using get instead of post on both form elts - this is for gh-pages - otherwise get 405 error --> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"> 
+ 
+  <link href="main.css" rel="stylesheet">
+ 
+ <style>
+#img-svg-1 {
+	width: 300px;
+	margin-bottom: 30px;
+}
+#img-svg-2 {
+	width: 220px;
+}
+.three {
+	width: 40px;
+}
+.four {
+	width: 60px;
+}
+#phone, #phone-bot {
+	font-size: 21px;
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+}
+#phone input, #phone-bot input {
+	font-size: 21px;
+	border: none;
+	outline: none;
+	font-family: Verdana,sans-serif;
+	text-align: left;
+	border-bottom: 1px solid #20ecbe;
+	padding-bottom: 0;	/*#fff; */
+	
+}
+@media (max-width: 992px) {
+	#img-svg-1, #img-svg-2 {
+		max-width: 100%;
+		height: 100%;
+	}
+}
+@media (max-width: 768px) {
+	#img-svg-1 {
+		margin-bottom: 0;
+	}
+}
+ </style>
+ </head>
+ <body>
+	<div class="container-fluid"> 
+	   <div id="topbar" >
+		  <a href="#">Institute of Web Technology &nbsp; [IWT]<br><span>New York	</span>
+		  </a>                
+			
+			<ul id="outer-ul">
+				<li>
+					<a href="#">Home</a>
+				</li>
+				<li>
+					<a href="#">About Us</a>
+				</li>
+				<li>
+					<a href="#">Testimony</a>
+				</li>
+				<li>
+					<a href="#">FAQ</a>
+				</li>
+				<li>
+					<a href="#">Contact</a>
+				</li>
+			</ul>
+			
+		<span id="burger">   
+				<i class="fa fa-navicon"></i>
+		 </span>
+		  
+			<div id="overlay">
+				<ul>
+					<li><a href="">Home</a></li>
+					<li><a href="">About Us</a></li>
+					<li><a href="">Testimony</a></li>
+					<li><a href="">FAQ</a></li>
+					<li><a href="">Blog</a></li>
+					<li><a href="">Contact</a></li>
+				</ul>
+			</div>	  
+	   </div> <!-- topbar -->
+	   
+	   <div id="banner">
+			
+			<div id="video-container">
+				<video width="300" height="150" autoplay="autoplay" loop="loop" margin:0 muted="" poster="/wp-content/themes/Columbia/media/img/hero_poster.jpg"><source src="https://bootcamp.cvn.columbia.edu/wp-content/uploads/sites/59/2018/03/hero_coding_columbia_video.mp4" type="video/mp4">
+				</video> 
+			</div> <!-- end of video container -->
+			
+			<div id="program" class="container">
+				<div class="row justify-content-center align-items-center" >   				
+					<div class="col-lg-6 order-lg-2 info-text text-right">
+						<h3 >Institute of Web Technology Boot Camp</h3>
+						<h1 class="big">Become A<br>Web Developer<br>
+						In 24 Weeks</h1>
+						<p>Class starts January 7, 2019 at [IWT]</p>
+					</div> <!-- 1st column -->
+					
+					<div class="col-lg-6 info order-lg-1 text-center">
+						<h1>Get Program Info</h1>
+						<p>Step <span id="page">1</span> of 3</p>
+						<form name="topForm" method="get" action="contact.html" onsubmit="return validate(this)">
+							<div id="names">
+								<input type="text" name="firstName" placeholder="First Name" class="textfield" autocomplete="off">
+								<input type="text" name="lastName" class="textfield" placeholder="Last Name" autocomplete="off">	
+							</div>
+							<div id="email">
+								<input type="text" name="email" placeholder="Email Address" class="textfield" autocomplete="off">
+							</div>
+						<!--	<div id="phone">
+								<input type="text" name="phone" placeholder="example: 212-123-1234" class="textfield" autocomplete="off">
+							</div> -->
+							<!--<div id="phoneNumber">-->
+							<div id="phone">
+								&#40;<input class="three" type="text" maxlength="3" name="phoneOne" autocomplete="off" oninput="autotab(this, document.topForm.phoneTwo)">&#41;&nbsp;
+								<input class="three" type="text" maxlength="3" oninput="autotab(this, document.topForm.phoneThree)" name="phoneTwo" autocomplete="off">&nbsp;&#8208;&nbsp;
+								<input class="four" type="text" maxlength="4" name="phoneThree" autocomplete="off">
+							</div>
+							<span id="error"></span>
+							<input id="submit-top" type="submit" name="submit" value="Continue">
+						</form>
+					</div> <!-- 2nd column -->
+				</div> <!-- end of row-->
+		   </div> <!-- end of program container -->
+		</div> <!-- end of banner -->
+		  		
+		<div id="cards">
+			<div class="container">
+				<h1 class="text-center">Featuring</h1>
+				<div class="row justify-content-around" >
+					<div class="col-md-3 my-card">
+				
+					<i class="fa fa-desktop" style="font-size:58px;color:darkcyan"></i>	
+					<p>HTML5, CSS3, JavaScript, jQuery, Bootstrap, Express.js, React.js, Node.js, Database Theory, Bookshelf.js, MongoDB, MySQL, Command Line, Git, and more.*
+					</p>
+					</div>
+					<div class="col-md-3 my-card">
+				
+					<i class="fa fa-clock-o" style="font-size:58px;color:darkcyan"></i>
+					
+					<p>Study part-time while maintaining your work schedule.</p>
+				
+					</div>
+					<div class="col-md-3 my-card">
+				
+					<i class="fa fa-connectdevelop" style="font-size:58px;color:darkcyan"></i>
+					<p>Benefit from a wide range of career services to position you for success through graduation and beyond.</p>
+				
+				</div>
+				<div class="col-md-3 my-card">
+				
+					<i class="fa fa-briefcase" style="font-size:58px;color:darkcyan"></i>
+					
+					<p>Build a portfolio of web applications to showcase your knowledge.</p>
+				</div>
+			</div> <!-- end of row -->
+			<p class="text-center remark">*The material covered in this course is subject to change due to market demand.</p>		
+			
+			</div> <!-- end of container-->
+		</div> <!-- end of cards -->
+			
+		<div id="trilogy">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<p>This program is offered through Institute of Web Technology in partnership with Trilogy Education Services, Inc.</p>
+						<p><span>About Trilogy Education Services</span><br>
+						Trilogy Education Services Inc. partners with universities to prepare participants for high-growth careers in the Digital Economy. Over thirty of the world’s leading institutions collaborate with Trilogy to bridge the gap between employers’ needs and participants’ skills.
+						</p>
+					</div>
+					<div class="col-md-4">
+						
+						<div>
+							<img src="images/columbia-logo.svg" id="img-svg-1"> 
+												
+							<img src="images/trilogy.svg" id="img-svg-2">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> <!-- end of trilogy -->	
+					
+		<div id="stats">
+			<div class="container">
+		
+				<p>Web development is one of the fastest growing careers in today’s economy with a projected 15% growth rate by 2026.* <span>The Institute of Web Technology Boot Camp</span> was designed to help learners develop the skills and professional network needed to capitalize on this high demand.<br>
+			
+				<span class="span-two">*Bureau of Labor Statistics</span></p>
+			
+			</div>
+		</div>
+		
+		<div id="learning">
+			<div class="row justify-content-between">
+				<div class="col-lg-5"></div>
+				<div class="col-lg-7">
+					<div id="learn-info">
+					<h3 class="text-center">What You Will Learn</h3>
+					<ul>
+					
+						<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+						Students will learn frontend and backend technologies to become proficient full stack developers.
+						</li>
+						<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+						Students gain access to a tutor network, allowing them to get help both inside and outside the classroom.
+						</li>
+						<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+						Students receive career-planning assistance, including:
+							<ul id="inner-ul">
+								<li><i class="fa fa-circle" style="font-size: 12px; color: darkcyan;"></i>
+								Portfolio reviews, resume and social media profile support, career content and practice sessions, technical interview training, 1:1 career coaching, soft skills training, and more.
+								</li>
+								
+								<li><i class="fa fa-circle" style="font-size: 12px; color: darkcyan;">
+								</i>Access to a dedicated Profile Coach and Career Director that will work with you throughout the program and prepare you to be Employer Competitive.
+								</li>
+							</ul>
+						</li>
+						<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+						Students will also gain industry insights through Tech Talks—quarterly online panels with local industry professionals.
+						</li>
+					</ul>
+				  </div>
+				</div>
+			</div>
+		</div> <!-- end of learning -->
+		
+		<div id="graduates">
+			<div class="row justify-content-between">
+				
+				<div class="col-lg-5 order-lg-2">
+				</div>
+				<div class="col-lg-7 order-lg-1">
+				
+					<div id="graduates-info">
+						<h3 class="text-center">What Graduates Receive</h3>
+						<ul>
+							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							A Project Demo Day—quarterly networking event with local professionals for students to showcase their final projects.
+							</li>
+							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							Continued one-on-one career coaching with your career director post-graduation.
+							</li>
+							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							An Award of Completion from Institute of Web Technology  showcasing your accomplishments to future employers.
+							</li>
+							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							A robust portfolio of projects to demonstrate your working knowledge of web development.
+							</li>
+						</ul>
+					</div>
+				</div> <!--end of col-md-7-->
+			</div> <!-- end of row -->
+		</div> <!-- end of graduates -->
+	   	   
+	   <div id="about">
+			<div class="container">
+	   			<h1 class="text-center">About the Institute of Web Technology</h1>
+				<p>The mission of The Institute of Web Technology is to expand knowledge and advance technology through research, while educating students to become leaders informed by an engineering foundation. Enriched with the intellectual resources of a global university in the City of New York, we push disciplinary frontiers, confront complex issues, and engineer innovative solutions to address the grand challenges of our time. We create a collaborative environment that embraces interdisciplinary thought, integrated entrepreneurship, cultural awareness, and social responsibility, and advances the translation of ideas into practical innovations.</p>
+			</div>
+		</div>
+		<div id="faq">
+			<div class="row justify-content-between">
+				
+				<div class="col-lg-7 order-lg-2">
+				
+					<div id="faq-info">
+						<h3 class="text-center">Frequently Asked Questions</h3>
+						<ul>
+							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							What are the dates of the program?
+							</li>
+							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							Can I keep working while studying at the Institute of Web Technology Coding Boot Camp?
+							</li>
+							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							How long is the course?
+							</li>
+							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							Do you provide career planning support?
+							</li>
+							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							Do I need to have previous experience in programming before enrolling?
+							</li>
+							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							What sets your boot camp apart from others I can join in New York City or elsewhere?
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-5 order-lg-1">
+				</div><!--end of col-md-7-->
+			</div> <!-- end of row -->
+		</div> <!-- end of faq -->
+			
+		<div id="footer-form">
+			<div class="container">
+				<div class="info text-center">								
+					<h1 class="text-center">Get Program Info</h1>
+					<p>Step <span id="page-bot">1</span> of 3</p>
+					<form name="botForm" method="get" action="contact.html" onsubmit="return validate_two(this)">
+						
+						<div id="names-bot">
+							<input type="text" name="firstName" placeholder="First Name" class="textfield" autocomplete="off">
+							<input type="text" name="lastName" placeholder="Last Name" class="textfield" autocomplete="off">	
+						</div>	
+						<div id="email-bot">
+							<input type="text" name="email" placeholder="Email Address" class="textfield" autocomplete="off">
+						</div>	
+					<!--	<div id="phone-bot">
+							<input type="text" name="phone" placeholder="example: 212-123-1234" class="textfield" autocomplete="off">
+						</div>-->
+						<div id="phone-bot">
+								&#40;<input class="three" type="text" maxlength="3" name="phoneOne" autocomplete="off" oninput="autotab(this, document.botForm.phoneTwo)">&#41;&nbsp;
+								<input class="three" type="text" maxlength="3" oninput="autotab(this, document.botForm.phoneThree)" name="phoneTwo" autocomplete="off">&nbsp;&#8208;&nbsp;
+								<input class="four" type="text" maxlength="4" name="phoneThree" autocomplete="off">
+							</div>
+						<span id="error-bot"></span>					
+						<input id="submit-bot" type="submit" name="submit" value="Continue">
+					</form>
+				</div>	
+			</div> 
+		</div> 
+		<div id="the-end">
+			<div class="container text-center">
+					<div class="end-info">								
+						<h2 class="text-center">Institute of Web Technology [IWT]</h2>
+						<p class="text-center">This program is offered through: <a href="">Institute of Web Technology</a></p> 
+						<p>Powered by Trilogy Education Services Inc.<br>
+						Contact Insitute of Web Technology Coding Boot Camp at <a href="">(888) 123-4567</a><br>
+						<a href="">Terms & Conditions</a> &nbsp; | &nbsp; <a><a href="">Privacy/Your Privacy Rights</a></p>
+						<span>&copy; 2018 by [IWT]. &nbsp;All Rights Reserved.</span>
+					</div>	
+				</div>
+			</div>
+		<!--<div class="row empty"></div>-->
+	</div> <!--end of main container-fluid-->
+	
+	<script src="main.js"></script>
+	<script>
+	
+		function autotab(current,to)
+		{
+			if (current.getAttribute && current.value.length==current.getAttribute("maxlength")) 
+			{
+				to.focus() 
+			}
+		}
+	
+		function validatePhone(field1, field2, field3) {
+		  
+			if (field1 == "" || field2 == "" || field3 == "") { 
+				return "All 3 fields are required";
+			}
+			else {
+			
+			//Concatenate the 3 input fields:
+				var phoneConcat = field1 + field2 + field3;
+			
+			  var phonenoPlain = /^\d{10}$/;
+			  //var phonenoFancy = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+			  
+			  if (phoneConcat.match(phonenoPlain)) {
+				  return "";
+			  }
+			  else {
+				 return "Invalid phone number format; Do this: 212-123-1234.\n";
+			  }
+			}
+		}
+	</script>		
+  </body>
+ </html>
+   
