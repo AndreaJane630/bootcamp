@@ -44,6 +44,117 @@
 	padding-bottom: 0;	/*#fff; */
 	
 }
+#privacy, #privacy-bot {
+	box-sizing: border-box;
+	display: none;
+}
+#privacy.show, #privacy-bot.show {
+	display: flex;
+	align-items: baseline;
+}
+#privacy p, #privacy-bot p {
+	font-size: .8rem;
+	font-family: Verdana, sans-serif;
+	color: #fff;
+	text-align: left;
+	margin: 15px 0 0 0;
+	line-height: 1.2;
+}
+#privacy-bot p {
+	margin: -15px 0 0 0;
+}
+#privacy a, #privacy-bot a {
+	color: #f6a76a;
+	text-decoration: none;
+	font-weight: bold;
+	transition: .25s ease-out; /* make hover nice and smooth */
+}
+#privacy a:hover, #privacy-bot a:hover {
+	text-decoration: underline;
+}
+#checkholder, #checkholder-bot {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+#checkholder input, #checkholder-bot input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+
+.checkmark, #checkholder-bot .checkmark {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #f6a76a; /*#20ecbe;*/
+}
+#checkholder-bot .checkmark {
+	top: 20px;
+}
+
+/* On mouse-over, add a different background color */
+
+#checkholder:hover input ~ .checkmark {
+    background-color: #20ecbe;
+}
+#checkholder-bot:hover input ~ .checkmark {
+    background-color: #20ecbe;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after, #checkholder-bot .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+#checkholder input:checked ~ .checkmark:after {
+    display: block;
+}
+#checkholder-bot input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+#checkholder .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;  
+    height: 10px;
+    border: solid white;
+   box-sizing: content-box;
+   border-width: 0 3px 3px 0; 
+   	-webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+#checkholder-bot .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;  
+    height: 10px;
+    border: solid white;
+    box-sizing: content-box;
+    border-width: 0 3px 3px 0; 
+   	-webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
 @media (max-width: 992px) {
 	#img-svg-1, #img-svg-2 {
 		max-width: 100%;
@@ -105,7 +216,8 @@
 			</div> <!-- end of video container -->
 			
 			<div id="program" class="container">
-				<div class="row justify-content-center align-items-center" >   				
+				<div class="row justify-content-center align-items-center" >
+				 				
 					<div class="col-lg-6 order-lg-2 info-text text-right">
 						<h3 >Institute of Web Technology Boot Camp</h3>
 						<h1 class="big">Become A<br>Web Developer<br>
@@ -124,14 +236,18 @@
 							<div id="email">
 								<input type="text" name="email" placeholder="Email Address" class="textfield" autocomplete="off">
 							</div>
-						<!--	<div id="phone">
-								<input type="text" name="phone" placeholder="example: 212-123-1234" class="textfield" autocomplete="off">
-							</div> -->
-							<!--<div id="phoneNumber">-->
+						
 							<div id="phone">
 								&#40;<input class="three" type="text" maxlength="3" name="phoneOne" autocomplete="off" oninput="autotab(this, document.topForm.phoneTwo)">&#41;&nbsp;
 								<input class="three" type="text" maxlength="3" oninput="autotab(this, document.topForm.phoneThree)" name="phoneTwo" autocomplete="off">&nbsp;&#8208;&nbsp;
 								<input class="four" type="text" maxlength="4" name="phoneThree" autocomplete="off">
+							</div>
+							<div id="privacy">							
+								<label id="checkholder">&nbsp;
+									<input type="checkbox" name="privacy">
+									<span class="checkmark"></span>
+							    </label>
+								<p>By checking this box, I consent to be contacted by the Institute of Web Technology, including by email or autodialed calls and text messages to any telephone number I provide, about my interest in furthering my career training. I understand my consent is not required to purchase or enroll. I also agree to the <a href="" target="_blank">Terms of Use</a> and <a href="" target="_blank">Privacy Policy</a>.</p>
 							</div>
 							<span id="error"></span>
 							<input id="submit-top" type="submit" name="submit" value="Continue">
@@ -324,13 +440,18 @@
 						<div id="email-bot">
 							<input type="text" name="email" placeholder="Email Address" class="textfield" autocomplete="off">
 						</div>	
-					<!--	<div id="phone-bot">
-							<input type="text" name="phone" placeholder="example: 212-123-1234" class="textfield" autocomplete="off">
-						</div>-->
+					
 						<div id="phone-bot">
 								&#40;<input class="three" type="text" maxlength="3" name="phoneOne" autocomplete="off" oninput="autotab(this, document.botForm.phoneTwo)">&#41;&nbsp;
 								<input class="three" type="text" maxlength="3" oninput="autotab(this, document.botForm.phoneThree)" name="phoneTwo" autocomplete="off">&nbsp;&#8208;&nbsp;
 								<input class="four" type="text" maxlength="4" name="phoneThree" autocomplete="off">
+							</div>
+							<div id="privacy-bot">							
+								<label id="checkholder-bot">&nbsp;
+									<input type="checkbox" name="privacy">
+									<span class="checkmark"></span>
+									<p>By checking this box, I consent to be contacted by the Institute of Web Technology, including by email or autodialed calls and text messages to any telephone number I provide, about my interest in furthering my career training. I understand my consent is not required to purchase or enroll. I also agree to the <a href="" target="_blank">Terms of Use</a> and <a href="" target="_blank">Privacy Policy</a>.</p>
+							    </label>
 							</div>
 						<span id="error-bot"></span>					
 						<input id="submit-bot" type="submit" name="submit" value="Continue">

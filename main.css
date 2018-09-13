@@ -96,7 +96,8 @@ ul {
 
 #banner {
 	position: relative;
-	height: 484px;	
+	/*height: 484px;	*/
+	min-height: 484px;
 	color: #fff;
 }
 
@@ -155,7 +156,7 @@ video {
 }
 .info p {
 	font-size: 18px;
-	font-weight: bold;
+	font-weight: normal;
 }
 #program .info-text h3 {
 	font-size: 24px;
@@ -493,7 +494,8 @@ form {
 }
 @media (max-width: 992px) { /* go to the overlay navbar */
 	#banner {
-		height: 670px !important;
+		/*height: 670px !important;*/
+		min-height: 750px;
 	}
 	#graduates-info {
 		padding: 0 0 35px 0;
@@ -515,10 +517,7 @@ form {
 	.info-text {
 		text-align: center !important;
 	}
-	#banner {
-		height: 621px;
-	}
-	
+		
 	#program {
 		top: 8%;
 		left: 50%;
@@ -635,7 +634,7 @@ form {
 	}
 	
 	#footer-form {
-		height: 380px;
+		height: 500px;
 	}
 	
 	#topbar > a {
@@ -706,7 +705,7 @@ form {
 		height: 670px; /*this is temporary until I scale down fonts etc. */
 	}
 	.info {
-		padding: 5px;
+		padding: 5px 5px 20px 5px;
 		width: 96%;
 	}
 	#names, #names-bot {

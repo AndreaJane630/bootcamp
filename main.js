@@ -41,7 +41,7 @@ let formPageBot = document.getElementById('page-bot').innerHTML;
  	
  	
 function validate(form) {	
-
+	let privPolicy = document.getElementById('privacy');
 	document.getElementById('submit-bot').disabled = true;
 	let errmsg = document.getElementById('error');
 	errmsg.innerHTML = "";
@@ -75,6 +75,7 @@ function validate(form) {
 		   document.getElementById('phone').style.visibility = "visible";
 		   document.getElementById('email').style.visibility = "hidden";
 		   document.getElementById('page').innerHTML = 3;
+		   privPolicy.classList.toggle("show");
 		   return false;
 		}
 	    else {
@@ -102,7 +103,7 @@ function validate(form) {
 	}
 }
 function validate_two(form) {
-	
+	let privPolicy = document.getElementById('privacy-bot');
 	document.getElementById('submit-top').disabled = true;
 	let errmsg = document.getElementById('error-bot');
 	errmsg.innerHTML = "";
@@ -135,6 +136,7 @@ function validate_two(form) {
 		   document.getElementById('phone-bot').style.visibility = "visible";
 		   document.getElementById('email-bot').style.visibility = "hidden";
 		   document.getElementById('page-bot').innerHTML = 3;
+		   privPolicy.classList.toggle("show");
 		   return false;
 		}
 	    else {
