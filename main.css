@@ -34,10 +34,8 @@ body {
 	text-decoration: none; /* if I don't do this, Bootstrap is sticking an 
 						    underline on hover - annoying! */
 }
-#topbar #mini {
-	display: none;
-}
-#topbar span:first-of-type {
+/*#topbar span:first-of-type {*/
+#topbar #loc {
 	margin-left: 150px;
 }
 
@@ -96,7 +94,6 @@ ul {
 
 #banner {
 	position: relative;
-	/*height: 484px;	*/
 	min-height: 484px;
 	color: #fff;
 }
@@ -132,7 +129,10 @@ video {
 /*	width: 100%;
 	height: auto; */
 }
-#program p {
+/*#program p {
+	font-size: 1.25rem;
+}*/
+.info-text p, .info p {
 	font-size: 1.25rem;
 }
 #program {
@@ -144,8 +144,7 @@ video {
 .info {
 	padding: 20px;
 	box-sizing: border-box;
-	/*max-width: 555px; */
-	background: #16a99d;
+	background: #006b6c; /*#16a99d; Ask Shoaib about color change */
 	border-radius: 5px;
 	color: #fff;
 }
@@ -157,6 +156,9 @@ video {
 .info p {
 	font-size: 18px;
 	font-weight: normal;
+}
+#program .info-text {
+	text-align: right;
 }
 #program .info-text h3 {
 	font-size: 24px;
@@ -190,7 +192,7 @@ input[type='submit']:hover {
 	background-color: #01c6ae;
 }
 
-#names, #names-bot {
+.names {
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
@@ -207,21 +209,21 @@ input {
 	border-bottom: 1px solid #20ecbe;
 	text-align: center;
 }
-#phone input, #phone-bot input {
+.phone input {
 	padding-bottom: 0;
 	font-size: 21px;
 }
 form {
 	position: relative;
 }
-#email, #email-bot, #phone, #phone-bot {
+.email, .phone {
 	width: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
 	visibility: hidden;
 }
-#email input, #email-bot input { /* deleted phone, phone-bot for now while testing 3-part phone input */ 
+.email input { /* deleted phone, phone-bot for now while testing 3-part phone input */ 
 	width: 90%;
 }
 ::-webkit-input-placeholder { /*for (Chrome/Safari/Opera) input::placeholder*/
@@ -231,7 +233,7 @@ form {
 	letter-spacing: .8px;
 /*	text-align: center; */
 }
-#error, #error-bot {
+.error {
 	position: absolute;
 	top: -100px;
 	left: 0;
@@ -278,9 +280,6 @@ form {
 	color: #f6a76a;
 	font-weight: bold;
 }
-/*#trilogy .col-md-4 img:first-of-type {
-	margin-bottom: 45px;
-}*/
 #stats {
 	margin-top: 0;
 	background-image: url(images/web.jpg); 
@@ -289,12 +288,11 @@ form {
 	background-position: center;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	min-height: 349px;
-	 /* Set a specific height */
-   /* min-height: 500px; */
+	/* Set a specific height */
+	min-height: 349px;   
    	display: flex;
 	justify-content: center;
-	align-items: center;	 
+	align-items: center;
 }
 
 #stats span {
@@ -333,7 +331,7 @@ form {
 	font-size: 32px;
 }
 
- .col-lg-7 {
+.col-lg-7 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -349,6 +347,7 @@ form {
 #learning li, #graduates li, #faq li {
 	line-height: 1.5rem;
 	font-size: 16px;
+	color: #333;
 	margin-bottom: .5rem;
 	position: relative;
 	padding-left: 30px;
@@ -368,16 +367,15 @@ form {
 }
 #faq .col-lg-5 {
 	background-position: left;
-	height: 600px;
+	/*height: 600px;*/
+	min-height: 600px;
 }
 #learn-info, #graduates-info, #faq-info {
 	max-width: 65%;
 	margin: 0 auto;
 	padding: 20px 0;
 }
-/*#faq-info {
-	margin: 0;
-}*/
+
 #graduates-info {
 	padding: 120px 0 140px 0;
 	box-sizing: border-box;
@@ -412,9 +410,9 @@ form {
 	background-position: center;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
+	/* Set a specific height for parallax */ 
 	min-height: 505px;
 	padding: 60px 0;
-	 /* Set a specific height */ 
 }
 
 #about p {
@@ -423,7 +421,6 @@ form {
 	line-height: 1.8;
 	padding-bottom: 20px;
 	box-sizing: border-box; 
-	/*text-align: center;  */
 }
 #about h1 {
 	color: #f6a76a;
@@ -452,7 +449,7 @@ form {
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	height: 430px; 
+	min-height: 430px; 
 	display: flex;
 	justify-content: center;
 	align-items: center;	
@@ -488,14 +485,21 @@ form {
 }
 
 @media (min-width: 993px) {
+	
 	.my-card {
 		max-width: 250px;
 	}
 }
 @media (max-width: 992px) { /* go to the overlay navbar */
+
 	#banner {
-		/*height: 670px !important;*/
-		min-height: 750px;
+		min-height: 670px;
+	}
+	#program .info {
+		width: 100%;
+	}
+	#graduates .col-lg-5 {
+		margin-bottom: 10px;
 	}
 	#graduates-info {
 		padding: 0 0 35px 0;
@@ -507,15 +511,18 @@ form {
 	#faq-info h3 {
 		padding: 30px 0 20px 0px;		
 	}
+	#faq-info ul li {
+		font-size: 1rem;
+	}
 	.info {
 		margin: 20px 0 25px 0;
 		width: 100%;
 	}
 	.info h1 {
-		font-size: 45px;
+		font-size: 1.5rem;
 	}
-	.info-text {
-		text-align: center !important;
+	#program .info-text {
+		text-align: center;
 	}
 		
 	#program {
@@ -599,30 +606,54 @@ form {
 	  visibility: visible;
 	  transform: scaleX(1);
 	}
+	#trilogy .row p {
+		font-size: 16px;
+	}
 	#learning .col-lg-5, #graduates .col-lg-5, #faq .col-lg-5 {
-		height: 300px;
+		/*height: 300px;*/
+		min-height: 300px;
 	}
 	#learn-info, #graduates-info, #faq-info {
 		max-width: 95%;
 	}
 	#stats p {
-		font-size: 1.25rem !important;
+		font-size: 1.25rem;
 		letter-spacing: default;
 		padding: 0 0 0 10px;
 	}
-	#about {
+	#about {	
 		padding: 0 0 20px 20px;
 	}
+	
 	#about p {
-		font-size: 1.1rem !important;
+		font-size: 1.1rem;
 		letter-spacing: default;
 		box-sizing: border-box; 
+		margin: 0;
 	}
 	#about h1 {
-		font-size: 1.5rem !important;
+		font-size: 1.5rem;
 	}
 }
-@media (max-width: 580px) {
+@media (max-width: 640px) {
+	
+	.info h1 {
+		font-size: 23px;
+	}
+	input[type="submit"] {
+		font-size: 23px;
+	}
+	#program .info-text h3 {
+		font-size: 16px;
+	}
+	#program .info-text p {
+		font-size: 16px;
+	}
+	.info-text .big {
+		font-size: 23px;
+	}
+/*}
+@media (max-width: 580px) { */
 	
 	#program {
 		top: 8%;
@@ -633,55 +664,36 @@ form {
 		margin-top: 0;		
 	}
 	
-	#footer-form {
-		height: 500px;
-	}
-	
 	#topbar > a {
 		font-size: 1rem;
 	}
 	#banner {
-		max-height: 600px;
+		min-height: 575px;
 	}
 	#trilogy .row {
 		padding: 10px;
 	}
-	#trilogy p {
-		font-size: 16px;
-	}
+	
 	#trilogy .col-md-4 div {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
-/*	#trilogy .col-md-4 img:first-of-type {
-		margin-bottom: 0;
-	}*/
+
 	#trilogy .col-md-4 div {
 		width: 100%;
 	}
 	
 	.info {
-		width: 85%;
+		width: 95%;
 	}
-	.info h1 {
-		font-size: 2rem;
-	}
-	.info-text h1 {
-		font-size: 1.5rem;
-	}
-	.info-text .big {
-		font-size: 1.5rem;
-	}
-	.info-text p {
-		font-weight: normal;
-	}
+	
 	#trilogy .col-md-4 div {
 		width: 40%;
 	}
 	
 	#stats p {
-		font-size: 1.1rem !important;
+		font-size: 1.1rem;
 		letter-spacing: default;
 		padding: 0 0 0 10px;
 	}
@@ -701,30 +713,54 @@ form {
 }
 @media (max-width: 460px) {
 	
-	#banner {
-		height: 670px; /*this is temporary until I scale down fonts etc. */
+	#burger {
+		width: 50px; 
+		height: 30px;
+		position: absolute;
+		/*top: 25px;*/
+		/*right: 25px; */
+		top: 35px;
+		right: 10px;
 	}
+	.fa.fa-navicon {
+		  /*font-size: 36px;*/
+	  font-size: 26px;
+	}
+	
 	.info {
 		padding: 5px 5px 20px 5px;
 		width: 96%;
 	}
-	#names, #names-bot {
+	.names {
 		width: 100%;
 		display: flex;
 		justify-content: default;
 	}
 	input {
-		width: 45%;
+		width: 48%;
 	}
+	input {
+		font-size: 18px;
+	}
+	input[type="submit"] {
+		font-size: 23px;
+	}	
+	::-webkit-input-placeholder { /*for (Chrome/Safari/Opera) input::placeholder*/
+    	font-size: 18px;
+    }
 	#topbar > a {
-		font-size: .75rem !important;
+		/*font-size: .75rem !important;*/
 		align-self: center;
 	}
-	#topbar span:first-of-type {
+	#topbar span:nth-child(1) {
+		display: none;
+	}
+	#topbar #loc {
 		margin-left: 100px;
 	}
+	
 	#about p {
-		font-size: .9rem !important;
+		font-size: .9rem;
 	}
 	#graduates-info {
 		padding: 30px 0 20px 0;

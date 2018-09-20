@@ -32,64 +32,72 @@ for (i = 0; i < inputList.length; i++) {
 	inputList[i].addEventListener('blur', function() {
 		resetPlaceHolder(this);
 		});
-} 
-// I need to keep track of where we are in the form, each time submit button hit
-// I could check the value of the span element with i.d. = "page", but I think that this is better?
+}
+ /* This function validates either form on the page - the num parameter
+ is used so that correct elements in nodelists are accessed since I am
+using classes, not ids. The loc parameter is used to indicate which sub-
+mit button to disable. Originally, I had 2 functions and numerous ids and
+ I did not like that solution. Too much code duplication. Having 2 identical
+forms on the page presents some difficulties.*/
+  
+function validate(form,num,loc) {	
 
-let formPageTop = document.getElementById('page').innerHTML;
-let formPageBot = document.getElementById('page-bot').innerHTML;
- 	
- 	
-function validate(form) {	
-	let privPolicy = document.getElementById('privacy');
-	document.getElementById('submit-bot').disabled = true;
-	let errmsg = document.getElementById('error');
+	let formPage = document.querySelectorAll('.page')[num];
+	let email = document.querySelectorAll('.email')[num];
+	let names = document.querySelectorAll('.names')[num];
+	let phone = document.querySelectorAll('.phone')[num];
+	let phoneOne = document.querySelectorAll('.phone input:first-of-type')[num];
+	let privPolicy = document.querySelectorAll('.privacy')[num];
+	let subm = document.querySelectorAll('.subm')[loc].disabled = true;
+	let subcurr = document.querySelectorAll('.subm')[num];
+	let errmsg = document.querySelectorAll('.error')[num];
 	errmsg.innerHTML = "";
 	errmsg.style.visibility = "hidden";
 	
-	if (formPageTop == 1) {
+	if (formPage.innerHTML == 1) {
 		
 		fail  = validateForename(form.firstName.value);
 		fail += validateSurname(form.lastName.value);
 
 		if   (fail == "") {
 		  
-		  document.getElementById('email').style.visibility = "visible";
-		  document.getElementById('names').style.visibility = "hidden";
-		  document.getElementById('page').innerHTML = 2;		  
-		  formPageTop++;
+		  email.style.visibility = "visible";
+		  names.style.visibility = "hidden";
+		  formPage.innerHTML = 2;		  
+		  
 		  return false;
 		}
 		else {
-			document.getElementById('submit-bot').disabled = false;
+			subm.disabled = false;
 			showErrMsg(fail,errmsg);	
 			return false;
 		}
 	}
-	else if (formPageTop == 2) {
+	else if (formPage.innerHTML == 2) {
 	
 		fail = validateEmail(form.email.value);
 		
 		if (fail == "") {
-		   formPageTop++;
-		   document.getElementById('phone').style.visibility = "visible";
-		   document.getElementById('email').style.visibility = "hidden";
-		   document.getElementById('page').innerHTML = 3;
-		   privPolicy.classList.toggle("show");
+		   
+		   phone.style.visibility = "visible";
+		   phoneOne.focus();
+		   email.style.visibility = "hidden";
+		   formPage.innerHTML = 3;
+		   subcurr.value = "Submit";
+		   privPolicy.style.display = "flex";
 		   return false;
 		}
 	    else {
 			showErrMsg(fail,errmsg);	
-			document.getElementById('submit-bot').disabled = false;
+			subm.disabled = false;
 			return false;
 		}
 	}
-	else if (formPageTop == 3) {
+	else if (formPage.innerHTML == 3) {
 		
 		fail = validatePhone(form.phoneOne.value,
-			form.phoneTwo.value, form.phoneThree.value);
+			   form.phoneTwo.value, form.phoneThree.value);
 			
-		//fail = validatePhone(form.phone.value);
 		if (fail == "") {
 			return true;
 		   //alert("Your are done!");
@@ -97,72 +105,12 @@ function validate(form) {
 		}
 	    else {
 			showErrMsg(fail,errmsg);	
-			document.getElementById('submit-bot').disabled = false;
+			subm.disabled = false;
 			return false;
 		}
 	}
 }
-function validate_two(form) {
-	let privPolicy = document.getElementById('privacy-bot');
-	document.getElementById('submit-top').disabled = true;
-	let errmsg = document.getElementById('error-bot');
-	errmsg.innerHTML = "";
-	errmsg.style.visibility = "hidden";
-	
-	if (formPageBot == 1) {
-		
-		fail  = validateForename(form.firstName.value);
-		fail += validateSurname(form.lastName.value);
 
-		if   (fail == "") {
-		  document.getElementById('email-bot').style.visibility = "visible";
-		  document.getElementById('names-bot').style.visibility = "hidden";
-		  document.getElementById('page-bot').innerHTML = 2;
-		  formPageBot++;
-		  return false;
-		 }
-		else {
-			showErrMsg(fail,errmsg);	
-			document.getElementById('submit-top').disabled = false;
-			return false;
-		}
-	}
-	else if (formPageBot == 2) {
-		
-		fail = validateEmail(form.email.value);
-		
-		if (fail == "") {
-		   formPageBot++;
-		   document.getElementById('phone-bot').style.visibility = "visible";
-		   document.getElementById('email-bot').style.visibility = "hidden";
-		   document.getElementById('page-bot').innerHTML = 3;
-		   privPolicy.classList.toggle("show");
-		   return false;
-		}
-	    else {
-			showErrMsg(fail,errmsg);	
-			document.getElementById('submit-top').disabled = false;
-			return false;
-		}
-	}
-	else if (formPageBot == 3) {
-		fail = validatePhone(form.phoneOne.value,
-			form.phoneTwo.value, form.phoneThree.value);
-			
-		//fail = validatePhone(form.phone.value);
-		
-		if (fail == "") {
-			return true;
-		 //  alert("You are done!");
-		 //  return false;    temp - should return trueso that form gets subitted
-		}
-		else {
-			showErrMsg(fail,errmsg);	
-			document.getElementById('submit-bot').disabled = false;
-			return false;
-		}
-	}
-}
 function validateForename(field){
 return (field == "") ? "No Forename was entered.\n" : ""
 }
@@ -188,23 +136,6 @@ function validateEmail(field)
 	}
   }
 	
-/*function validatePhone(field)
-  {
-	if (field == "") { 
-		return "Please enter a phone number.\n";
-	}
-	else {
-	  var phonenoPlain = /^\d{10}$/;
-  	  var phonenoFancy = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-	  
-      if (field.match(phonenoPlain) || field.match(phonenoFancy)) {
-		  return "";
-	  }
-	  else {
-         return "Invalid phone number format; Do this: 212-123-1234.\n";
-	  }
-	}
-}*/
 function showErrMsg(fail,errmsg) {
 	
 	errmsg.innerHTML = fail;

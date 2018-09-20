@@ -28,13 +28,13 @@
 .four {
 	width: 60px;
 }
-#phone, #phone-bot {
+.phone {
 	font-size: 21px;
 	display: flex;
 	justify-content: center;
 	align-items: baseline;
 }
-#phone input, #phone-bot input {
+.phone input {
 	font-size: 21px;
 	border: none;
 	outline: none;
@@ -44,15 +44,13 @@
 	padding-bottom: 0;	/*#fff; */
 	
 }
-#privacy, #privacy-bot {
+.privacy {
 	box-sizing: border-box;
 	display: none;
-}
-#privacy.show, #privacy-bot.show {
-	display: flex;
 	align-items: baseline;
 }
-#privacy p, #privacy-bot p {
+
+.privacy p {
 	font-size: .8rem;
 	font-family: Verdana, sans-serif;
 	color: #fff;
@@ -60,19 +58,19 @@
 	margin: 15px 0 0 0;
 	line-height: 1.2;
 }
-#privacy-bot p {
+#privacyBot p {
 	margin: -15px 0 0 0;
 }
-#privacy a, #privacy-bot a {
+.privacy a {
 	color: #f6a76a;
 	text-decoration: none;
 	font-weight: bold;
 	transition: .25s ease-out; /* make hover nice and smooth */
 }
-#privacy a:hover, #privacy-bot a:hover {
+.privacy a:hover{
 	text-decoration: underline;
 }
-#checkholder, #checkholder-bot {
+.checkholder {
 	display: block;
 	position: relative;
 	padding-left: 35px;
@@ -86,7 +84,8 @@
 }
 
 /* Hide the browser's default checkbox */
-#checkholder input, #checkholder-bot input {
+
+.checkholder input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -94,7 +93,7 @@
 
 /* Create a custom checkbox */
 
-.checkmark, #checkholder-bot .checkmark {
+.checkmark {
     position: absolute;
     top: 15px;
     left: 0;
@@ -102,48 +101,31 @@
     width: 25px;
     background-color: #f6a76a; /*#20ecbe;*/
 }
-#checkholder-bot .checkmark {
+#privacyBot .checkmark {
 	top: 20px;
 }
-
 /* On mouse-over, add a different background color */
 
-#checkholder:hover input ~ .checkmark {
-    background-color: #20ecbe;
-}
-#checkholder-bot:hover input ~ .checkmark {
+.checkholder:hover input ~ .checkmark {
     background-color: #20ecbe;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after, #checkholder-bot .checkmark:after {
+
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
 
 /* Show the checkmark when checked */
-#checkholder input:checked ~ .checkmark:after {
-    display: block;
-}
-#checkholder-bot input:checked ~ .checkmark:after {
+
+.checkholder input:checked ~ .checkmark:after {
     display: block;
 }
 
 /* Style the checkmark/indicator */
-#checkholder .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;  
-    height: 10px;
-    border: solid white;
-   box-sizing: content-box;
-   border-width: 0 3px 3px 0; 
-   	-webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-#checkholder-bot .checkmark:after {
+.checkholder .checkmark:after {
     left: 9px;
     top: 5px;
     width: 5px;  
@@ -155,6 +137,7 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
 @media (max-width: 992px) {
 	#img-svg-1, #img-svg-2 {
 		max-width: 100%;
@@ -171,7 +154,7 @@
  <body>
 	<div class="container-fluid"> 
 	   <div id="topbar" >
-		  <a href="#">Institute of Web Technology &nbsp; [IWT]<br><span>New York	</span>
+		  <a href="#">Institute of Web Technology &nbsp; <span>[IWT]</span><br><span id="loc">New York</span>
 		  </a>                
 			
 			<ul id="outer-ul">
@@ -211,15 +194,16 @@
 	   <div id="banner">
 			
 			<div id="video-container">
-				<video width="300" height="150" autoplay="autoplay" loop="loop" margin:0 muted="" poster="/wp-content/themes/Columbia/media/img/hero_poster.jpg"><source src="https://bootcamp.cvn.columbia.edu/wp-content/uploads/sites/59/2018/03/hero_coding_columbia_video.mp4" type="video/mp4">
+				<video width="300" height="150" autoplay="autoplay" loop="loop" margin:0 muted="" poster="/wp-content/themes/Columbia/media/img/hero_poster.jpg">
+					<source src="https://bootcamp.cvn.columbia.edu/wp-content/uploads/sites/59/2018/03/hero_coding_columbia_video.mp4" type="video/mp4">
 				</video> 
 			</div> <!-- end of video container -->
 			
 			<div id="program" class="container">
 				<div class="row justify-content-center align-items-center" >
 				 				
-					<div class="col-lg-6 order-lg-2 info-text text-right">
-						<h3 >Institute of Web Technology Boot Camp</h3>
+					<div class="col-lg-6 order-lg-2 info-text">
+						<h3>Institute of Web Technology Boot Camp</h3>
 						<h1 class="big">Become A<br>Web Developer<br>
 						In 24 Weeks</h1>
 						<p>Class starts January 7, 2019 at [IWT]</p>
@@ -227,30 +211,30 @@
 					
 					<div class="col-lg-6 info order-lg-1 text-center">
 						<h1>Get Program Info</h1>
-						<p>Step <span id="page">1</span> of 3</p>
-						<form name="topForm" method="get" action="contact.html" onsubmit="return validate(this)">
-							<div id="names">
-								<input type="text" name="firstName" placeholder="First Name" class="textfield" autocomplete="off">
+						<p>Step <span class="page">1</span> of 3</p>
+						<form name="topForm" method="get" action="contact.html" onsubmit="return validate(this,0,1)">
+							<div class="names">
+								<input id="firstname" type="text" name="firstName" placeholder="First Name" class="textfield" autocomplete="off">
 								<input type="text" name="lastName" class="textfield" placeholder="Last Name" autocomplete="off">	
 							</div>
-							<div id="email">
+							<div class="email">
 								<input type="text" name="email" placeholder="Email Address" class="textfield" autocomplete="off">
 							</div>
 						
-							<div id="phone">
+							<div class="phone">
 								&#40;<input class="three" type="text" maxlength="3" name="phoneOne" autocomplete="off" oninput="autotab(this, document.topForm.phoneTwo)">&#41;&nbsp;
 								<input class="three" type="text" maxlength="3" oninput="autotab(this, document.topForm.phoneThree)" name="phoneTwo" autocomplete="off">&nbsp;&#8208;&nbsp;
 								<input class="four" type="text" maxlength="4" name="phoneThree" autocomplete="off">
 							</div>
-							<div id="privacy">							
-								<label id="checkholder">&nbsp;
+							<div class="privacy">							
+								<label class="checkholder">&nbsp;
 									<input type="checkbox" name="privacy">
 									<span class="checkmark"></span>
 							    </label>
 								<p>By checking this box, I consent to be contacted by the Institute of Web Technology, including by email or autodialed calls and text messages to any telephone number I provide, about my interest in furthering my career training. I understand my consent is not required to purchase or enroll. I also agree to the <a href="" target="_blank">Terms of Use</a> and <a href="" target="_blank">Privacy Policy</a>.</p>
 							</div>
-							<span id="error"></span>
-							<input id="submit-top" type="submit" name="submit" value="Continue">
+							<span class="error"></span>
+							<input class="subm" type="submit" name="submit" value="Continue">
 						</form>
 					</div> <!-- 2nd column -->
 				</div> <!-- end of row-->
@@ -430,31 +414,31 @@
 			<div class="container">
 				<div class="info text-center">								
 					<h1 class="text-center">Get Program Info</h1>
-					<p>Step <span id="page-bot">1</span> of 3</p>
-					<form name="botForm" method="get" action="contact.html" onsubmit="return validate_two(this)">
+					<p>Step <span class="page">1</span> of 3</p>
+					<form name="botForm" method="get" action="contact.html" onsubmit="return validate(this,1,0)">
 						
-						<div id="names-bot">
+						<div class="names">
 							<input type="text" name="firstName" placeholder="First Name" class="textfield" autocomplete="off">
 							<input type="text" name="lastName" placeholder="Last Name" class="textfield" autocomplete="off">	
 						</div>	
-						<div id="email-bot">
+						<div class="email">
 							<input type="text" name="email" placeholder="Email Address" class="textfield" autocomplete="off">
 						</div>	
 					
-						<div id="phone-bot">
+						<div class="phone">
 								&#40;<input class="three" type="text" maxlength="3" name="phoneOne" autocomplete="off" oninput="autotab(this, document.botForm.phoneTwo)">&#41;&nbsp;
 								<input class="three" type="text" maxlength="3" oninput="autotab(this, document.botForm.phoneThree)" name="phoneTwo" autocomplete="off">&nbsp;&#8208;&nbsp;
 								<input class="four" type="text" maxlength="4" name="phoneThree" autocomplete="off">
-							</div>
-							<div id="privacy-bot">							
-								<label id="checkholder-bot">&nbsp;
-									<input type="checkbox" name="privacy">
-									<span class="checkmark"></span>
-									<p>By checking this box, I consent to be contacted by the Institute of Web Technology, including by email or autodialed calls and text messages to any telephone number I provide, about my interest in furthering my career training. I understand my consent is not required to purchase or enroll. I also agree to the <a href="" target="_blank">Terms of Use</a> and <a href="" target="_blank">Privacy Policy</a>.</p>
-							    </label>
-							</div>
-						<span id="error-bot"></span>					
-						<input id="submit-bot" type="submit" name="submit" value="Continue">
+						</div>
+						<div id="privacyBot" class="privacy">							
+							<label class="checkholder">&nbsp;
+								<input type="checkbox" name="privacy">
+								<span class="checkmark"></span>
+								<p>By checking this box, I consent to be contacted by the Institute of Web Technology, including by email or autodialed calls and text messages to any telephone number I provide, about my interest in furthering my career training. I understand my consent is not required to purchase or enroll. I also agree to the <a href="" target="_blank">Terms of Use</a> and <a href="" target="_blank">Privacy Policy</a>.</p>
+							</label>
+						</div>
+						<span class="error"></span>					
+						<input class="subm" type="submit" name="submit" value="Continue">
 					</form>
 				</div>	
 			</div> 
