@@ -33,6 +33,11 @@ for (i = 0; i < inputList.length; i++) {
 		resetPlaceHolder(this);
 		});
 }
+function autotab(current,to) {
+	if (current.getAttribute && current.value.length==current.getAttribute("maxlength")) {
+		to.focus() 
+	   }
+	}
  /* This function validates either form on the page - the num parameter
  is used so that correct elements in nodelists are accessed since I am
 using classes, not ids. The loc parameter is used to indicate which sub-
@@ -135,7 +140,27 @@ function validateEmail(field)
 		}
 	}
   }
+function validatePhone(field1, field2, field3) {
+  
+	if (field1 == "" || field2 == "" || field3 == "") { 
+		return "All 3 fields are required";
+	}
+	else {
 	
+	//Concatenate the 3 input fields:
+	  var phoneConcat = field1 + field2 + field3;
+	
+	  var phonenoPlain = /^\d{10}$/;
+	  //var phonenoFancy = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+	  
+	  if (phoneConcat.match(phonenoPlain)) {
+		  return "";
+	  }
+	  else {
+		 return "Invalid phone number format; Do this: 212-123-1234.\n";
+	  }
+	}
+}	
 function showErrMsg(fail,errmsg) {
 	
 	errmsg.innerHTML = fail;
@@ -150,3 +175,40 @@ function showErrMsg(fail,errmsg) {
 	eloverlay.classList.toggle("show");
 	
 });
+
+// Get all "outerlist" li elements in the FAQ section
+		// Get all innerlists (the uls) - they belong to the outer list
+		
+let faqListItems = document.querySelectorAll('.faqItem');  // should I use this way or className ?
+//let faqListItems = document.getElementsByClassName('faqItem');
+let faqAnswers = document.querySelectorAll('.innerList');
+//let faqAnswers = document.getElementsByClassName('innerList');
+
+for (i = 0; i < faqListItems.length; i++) {
+
+let faqArrow = faqListItems[i].firstChild; // grab i tag to see arrow position, or should I collect all of them in an array too?
+let theAnswer = faqAnswers[i];
+
+faqListItems[i].addEventListener('click', function() { //add listener to each faq list item
+				
+	if (faqArrow.classList.contains("fa-arrow-circle-right")) { // if pointing right, means user wants to see answer
+		for (j=0; j < faqListItems.length; j++) { // need to find out if another faq answer was previously displayed
+			let currentArrow = faqListItems[j].firstChild;
+			if (currentArrow.classList.contains("fa-arrow-circle-down")) { // answer is displayed for this faq
+				currentArrow.classList.remove("fa-arrow-circle-down"); 
+				currentArrow.classList.add("fa-arrow-circle-right"); // go back to default arrow right
+				faqAnswers[j].style.display = "none"; // no more answer displayed
+				break; // get out of this loop - there can only be one answer displayed at one time
+			} // end of if
+		} // end of for loop
+		faqArrow.classList.remove("fa-arrow-circle-right");
+		faqArrow.classList.add("fa-arrow-circle-down"); // change to down arrow
+		theAnswer.style.display = "block"; // display the answer
+	} // end of if when arrow pointing right
+	else { // the li was previously clicked and answer displayed, so now undisplay it in response to user's click
+		faqArrow.classList.remove("fa-arrow-circle-down");
+		faqArrow.classList.add("fa-arrow-circle-right"); // put back the right
+		theAnswer.style.display = "none";
+	} 
+});
+} // end of loop to add EVL to each li in FAQ list

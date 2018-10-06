@@ -1,15 +1,16 @@
 body { 
 	overflow-x: hidden; 
-	padding: 120px 0 0 0; /* 120px to account for fixed pos of topbar*/
+	/*padding: 120px 0 0 0;  120px to account for fixed pos of topbar*/
 	margin: 0;
 	font-family: Verdana, Helvetica, Arial, sans-serif;
+	box-sizing: border-box;
 }
 .container-fluid {
-	padding: 0;
+	/*padding: 0;   120px to account for fixed pos of topbar*/
+	padding: 120px 0 0 0;
 }
 #topbar {
 	background: -webkit-linear-gradient(top, rgba(0,117,116, 1), rgba(22,169,157, .8)); 
-	/*background: #01a093;*/ /*#1b8d82; */
 	padding: 25px;
 	border-bottom: 7px solid #f6a76a;
 	box-shadow: 10px 0 10px 5px #aaa;
@@ -129,17 +130,13 @@ video {
 /*	width: 100%;
 	height: auto; */
 }
-/*#program p {
-	font-size: 1.25rem;
-}*/
+
 .info-text p, .info p {
 	font-size: 1.25rem;
 }
-#program {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-    transform: translate(-50%, -50%); 
+
+#program .row {
+	min-height: 484px;
 }
 .info {
 	padding: 20px;
@@ -164,9 +161,7 @@ video {
 	font-size: 24px;
 	font-weight: normal;
 }
-/*#program .info-text p {
-	letter-spacing: 1.5px;
-}*/
+
 .info-text .big {
 	font-size: 45px;
 	font-weight: bold;
@@ -226,13 +221,18 @@ form {
 .email input { /* deleted phone, phone-bot for now while testing 3-part phone input */ 
 	width: 90%;
 }
-::-webkit-input-placeholder { /*for (Chrome/Safari/Opera) input::placeholder*/
+::-webkit-input-placeholder {  /*for (Chrome/Safari/Opera) input::placeholder*/
     color: #fff;
+	font-size: 1.5rem;
+   /* opacity: 1;  Firefox */
+	letter-spacing: .8px;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+	color: #fff;
 	font-size: 1.5rem;
     opacity: 1; /* Firefox */
 	letter-spacing: .8px;
-/*	text-align: center; */
-}
+}	
 .error {
 	position: absolute;
 	top: -100px;
@@ -336,15 +336,18 @@ form {
 	align-items: center;
 	justify-content: center;
 }
+.col-lg-5 {
+	min-height: 500px;
+}
 #faq-info h3 {
 	padding: 100px 0 25px 0;
 	box-sizing: border-box;
 }
 #faq-info ul li {
-	font-size: 18px;
+	font-size: 16px;
 	cursor: pointer;
 }
-#learning li, #graduates li, #faq li {
+#learning li, #graduates li, #faq-info li {
 	line-height: 1.5rem;
 	font-size: 16px;
 	color: #333;
@@ -352,23 +355,25 @@ form {
 	position: relative;
 	padding-left: 30px;
 }
-#faq li {
+#faq-info li {
 	padding-bottom: 10px;
 }
 #learning .col-lg-5, #graduates .col-lg-5, #faq .col-lg-5 {
 	
-	background-size: cover;
+	background-size: cover; 
 	background-position: center;
 	background-repeat: no-repeat;
-	max-width: 100%;
+	min-height: 500px;
+	/*max-width: 100%;  */
 }
 #graduates .col-lg-5 {
 	margin-bottom: 40px;
 }
+
 #faq .col-lg-5 {
-	background-position: left;
+	background-position: left; 
 	/*height: 600px;*/
-	min-height: 600px;
+	/*min-height: 600px; */
 }
 #learn-info, #graduates-info, #faq-info {
 	max-width: 65%;
@@ -389,7 +394,18 @@ form {
 #faq .col-lg-5 {
 	background-image: url(images/faq.jpg);
 }
-.fa.fa-arrow-circle-right {
+.faqItem:hover span {
+	text-decoration: underline;
+}
+#faq-info .innerList .innerOne {
+	margin-top: 10px;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+#faq-info .innerList:last-of-type li:first-child {
+	margin-top: 10px;
+}
+.fa.fa-arrow-circle-right, .fa.fa-arrow-circle-down {
 	font-size:24px;
 	color:darkcyan;
 	position: absolute;
@@ -456,7 +472,8 @@ form {
 }
 #footer-form .info {
 	max-width: 555px;
-	margin: 0 auto;
+	/*margin: 0 auto;*/
+	margin: 50px auto;
 }
 #the-end {
 	background-color: #007574;
@@ -483,7 +500,131 @@ form {
 #the-end span {
 	font-size: 1rem;
 }
+#img-svg-1 {
+	width: 300px;
+	margin-bottom: 30px;
+}
+#img-svg-2 {
+	width: 220px;
+}
+.three {
+	width: 40px;
+}
+.four {
+	width: 60px;
+}
+.phone {
+	font-size: 21px;
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+}
+.phone input {
+	font-size: 21px;
+	border: none;
+	outline: none;
+	font-family: Verdana,sans-serif;
+	text-align: left;
+	border-bottom: 1px solid #20ecbe;
+	padding-bottom: 0;	/*#fff; */
+	
+}
+.privacy {
+	box-sizing: border-box;
+	display: none;
+	align-items: baseline;
+}
 
+.privacy p {
+	font-size: .8rem;
+	font-family: Verdana, sans-serif;
+	color: #fff;
+	text-align: left;
+	margin: 15px 0 0 0;
+	line-height: 1.2;
+}
+#privacyBot p {
+	margin: -15px 0 0 0;
+}
+.privacy a {
+	color: #f6a76a;
+	text-decoration: none;
+	font-weight: bold;
+	transition: .25s ease-out; /* make hover nice and smooth */
+}
+.privacy a:hover{
+	text-decoration: underline;
+}
+.checkholder {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+
+.checkholder input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+
+.checkmark {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #f6a76a; /*#20ecbe;*/
+}
+#privacyBot .checkmark {
+	top: 20px;
+}
+/* On mouse-over, add a different background color */
+
+.checkholder:hover input ~ .checkmark {
+    background-color: #20ecbe;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+
+.checkholder input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkholder .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;  
+    height: 10px;
+    border: solid white;
+    box-sizing: content-box;
+    border-width: 0 3px 3px 0; 
+   	-webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.innerList {
+	display: none;
+}
 @media (min-width: 993px) {
 	
 	.my-card {
@@ -492,11 +633,19 @@ form {
 }
 @media (max-width: 992px) { /* go to the overlay navbar */
 
-	#banner {
-		min-height: 670px;
+	#img-svg-1, #img-svg-2 {
+		max-width: 100%;
+		height: 100%;
 	}
+
+	/*#banner {
+		min-height: 670px;
+	}*/
 	#program .info {
 		width: 100%;
+	}
+	#program .info-text {
+		margin-top: 50px;
 	}
 	#graduates .col-lg-5 {
 		margin-bottom: 10px;
@@ -514,6 +663,14 @@ form {
 	#faq-info ul li {
 		font-size: 1rem;
 	}
+	
+	#faq .col-lg-5 {
+		min-height: 695px; 
+		background-image: url(images/faq_mob.jpg);
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: bottom center;
+	}
 	.info {
 		margin: 20px 0 25px 0;
 		width: 100%;
@@ -525,11 +682,6 @@ form {
 		text-align: center;
 	}
 		
-	#program {
-		top: 8%;
-		left: 50%;
-		transform: translateX(-50%); 
-	}
 	#burger {
 		display: block;		
 	}
@@ -609,10 +761,10 @@ form {
 	#trilogy .row p {
 		font-size: 16px;
 	}
-	#learning .col-lg-5, #graduates .col-lg-5, #faq .col-lg-5 {
-		/*height: 300px;*/
-		min-height: 300px;
-	}
+/*	#learning .col-lg-5, #graduates .col-lg-5 { , #faq .col-lg-5 { 
+		height: 300px;
+		min-height: 500px;
+	} */
 	#learn-info, #graduates-info, #faq-info {
 		max-width: 95%;
 	}
@@ -635,8 +787,18 @@ form {
 		font-size: 1.5rem;
 	}
 }
+@media (max-width: 768px) {
+	#img-svg-1 {
+		margin-bottom: 0;
+	}
+	#faq .col-lg-5 {
+		min-height: 575px; 
+	}
+}
 @media (max-width: 640px) {
-	
+	/*#faq .col-lg-5 {
+		min-height: 575px; 
+	}*/
 	.info h1 {
 		font-size: 23px;
 	}
@@ -652,14 +814,10 @@ form {
 	.info-text .big {
 		font-size: 23px;
 	}
-/*}
-@media (max-width: 580px) { */
-	
-	#program {
-		top: 8%;
-		left: 50%;
-		transform: translateX(-50%); 
+	#faq .col-lg-5 {
+		min-height: 475px; 
 	}
+
 	.info {
 		margin-top: 0;		
 	}
@@ -667,9 +825,7 @@ form {
 	#topbar > a {
 		font-size: 1rem;
 	}
-	#banner {
-		min-height: 575px;
-	}
+
 	#trilogy .row {
 		padding: 10px;
 	}
@@ -713,6 +869,9 @@ form {
 }
 @media (max-width: 460px) {
 	
+	#faq .col-lg-5 {
+		min-height: 330px; 
+	}
 	#burger {
 		width: 50px; 
 		height: 30px;
@@ -723,8 +882,7 @@ form {
 		right: 10px;
 	}
 	.fa.fa-navicon {
-		  /*font-size: 36px;*/
-	  font-size: 26px;
+   	  font-size: 26px;
 	}
 	
 	.info {
@@ -749,7 +907,7 @@ form {
     	font-size: 18px;
     }
 	#topbar > a {
-		/*font-size: .75rem !important;*/
+		
 		align-self: center;
 	}
 	#topbar span:nth-child(1) {

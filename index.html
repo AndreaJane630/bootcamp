@@ -1,8 +1,10 @@
 <!-- Temp using get instead of post on both form elts - this is for gh-pages - otherwise get 405 error --> 
+<!-- Form inputs for name and email have semantic names for autocomplete - this is because Chrome ignores on/off; Right now I don't want autocomplete, but perhaps it should be turned on in the future - is it truly better for the user experience? -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Institute of Web Technology [IWT]</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -12,148 +14,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"> 
  
+  <!--<link href="two-forms.css" rel="stylesheet">-->
   <link href="main.css" rel="stylesheet">
  
  <style>
-#img-svg-1 {
-	width: 300px;
-	margin-bottom: 30px;
-}
-#img-svg-2 {
-	width: 220px;
-}
-.three {
-	width: 40px;
-}
-.four {
-	width: 60px;
-}
-.phone {
-	font-size: 21px;
-	display: flex;
-	justify-content: center;
-	align-items: baseline;
-}
-.phone input {
-	font-size: 21px;
-	border: none;
-	outline: none;
-	font-family: Verdana,sans-serif;
-	text-align: left;
-	border-bottom: 1px solid #20ecbe;
-	padding-bottom: 0;	/*#fff; */
-	
-}
-.privacy {
-	box-sizing: border-box;
-	display: none;
-	align-items: baseline;
-}
 
-.privacy p {
-	font-size: .8rem;
-	font-family: Verdana, sans-serif;
-	color: #fff;
-	text-align: left;
-	margin: 15px 0 0 0;
-	line-height: 1.2;
-}
-#privacyBot p {
-	margin: -15px 0 0 0;
-}
-.privacy a {
-	color: #f6a76a;
-	text-decoration: none;
-	font-weight: bold;
-	transition: .25s ease-out; /* make hover nice and smooth */
-}
-.privacy a:hover{
-	text-decoration: underline;
-}
-.checkholder {
-	display: block;
-	position: relative;
-	padding-left: 35px;
-	margin-bottom: 12px;
-	cursor: pointer;
-	font-size: 22px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-/* Hide the browser's default checkbox */
-
-.checkholder input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-/* Create a custom checkbox */
-
-.checkmark {
-    position: absolute;
-    top: 15px;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #f6a76a; /*#20ecbe;*/
-}
-#privacyBot .checkmark {
-	top: 20px;
-}
-/* On mouse-over, add a different background color */
-
-.checkholder:hover input ~ .checkmark {
-    background-color: #20ecbe;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* Show the checkmark when checked */
-
-.checkholder input:checked ~ .checkmark:after {
-    display: block;
-}
-
-/* Style the checkmark/indicator */
-.checkholder .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;  
-    height: 10px;
-    border: solid white;
-    box-sizing: content-box;
-    border-width: 0 3px 3px 0; 
-   	-webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-@media (max-width: 992px) {
-	#img-svg-1, #img-svg-2 {
-		max-width: 100%;
-		height: 100%;
-	}
-}
-@media (max-width: 768px) {
-	#img-svg-1 {
-		margin-bottom: 0;
-	}
-}
  </style>
  </head>
  <body>
 	<div class="container-fluid"> 
-	   <div id="topbar" >
+	   <div id="topbar">
 		  <a href="#">Institute of Web Technology &nbsp; <span>[IWT]</span><br><span id="loc">New York</span>
 		  </a>                
 			
@@ -212,13 +82,13 @@
 					<div class="col-lg-6 info order-lg-1 text-center">
 						<h1>Get Program Info</h1>
 						<p>Step <span class="page">1</span> of 3</p>
-						<form name="topForm" method="get" action="contact.html" onsubmit="return validate(this,0,1)">
+						<form name="topForm" method="get" action="contact.html" autocomplete="off" onsubmit="return validate(this,0,1)">
 							<div class="names">
-								<input id="firstname" type="text" name="firstName" placeholder="First Name" class="textfield" autocomplete="off">
-								<input type="text" name="lastName" class="textfield" placeholder="Last Name" autocomplete="off">	
+								<input id="firstname" type="text" name="firstName" placeholder="First Name" class="textfield" autocomplete="user-first-name">
+								<input type="text" name="lastName" class="textfield" placeholder="Last Name" autocomplete="user-last-name">	
 							</div>
 							<div class="email">
-								<input type="text" name="email" placeholder="Email Address" class="textfield" autocomplete="off">
+								<input type="text" name="email" placeholder="Email Address" class="textfield" autocomplete="user-email">
 							</div>
 						
 							<div class="phone">
@@ -384,23 +254,47 @@
 					<div id="faq-info">
 						<h3 class="text-center">Frequently Asked Questions</h3>
 						<ul>
-							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
-							What are the dates of the program?
+							<li class="faqItem"><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							<span>What are the dates of the program?</span>
+								<ul class="innerList">
+									<li class="innerOne"><i class="fa fa-circle" style="font-size: 12px; color: darkcyan;"></i>
+									January 7, 2019 - June 29, 2019
+									</li>
+								</ul>
 							</li>
-							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
-							Can I keep working while studying at the Institute of Web Technology Coding Boot Camp?
+							
+							<li class="faqItem"><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							<span>Can I keep working while studying at the Institute of Web Technology Coding Boot Camp?</span>
+								<ul class="innerList">
+									<li class="innerOne"><i class="fa fa-circle" style="font-size: 12px; color: darkcyan;"></i>Yes. The program is designed for working professionals who are actively seeking career change.</li>
+								</ul>
 							</li>
-							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
-							How long is the course?
+							<li class="faqItem"><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							<span>How long is the course?</span>
+								<ul class="innerList">
+									<li class="innerOne"><i class="fa fa-circle" style="font-size: 12px; color: darkcyan;"></i>Learners will complete the program in six months.</li>
+								</ul>
 							</li>
-							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
-							Do you provide career planning support?
+							<li class="faqItem"><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							<span>Do you provide career planning support?</span>
+								<ul class="innerList">
+									<li class="innerOne"><i class="fa fa-circle" style="font-size: 12px; color: darkcyan;"></i>Yes. We offer all of our students career support and coaching, including portfolio reviews, resume assistance, and technical interview training. In addition, we offer students experiential learning opportunities to strengthen their portfolio.</li>
+								</ul>
 							</li>
-							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
-							Do I need to have previous experience in programming before enrolling?
+							<li class="faqItem"><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							<span>Do I need to have previous experience in programming before enrolling?</span>
+								<ul class="innerList">
+									<li class="innerOne"><i class="fa fa-circle" style="font-size: 12px; color: darkcyan;"></i>No. While having some background can help, our pre-course tutorials will get you up to speed and ready to start learning on Day 1.</li>
+								</ul>
 							</li>
-							<li><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
-							What sets your boot camp apart from others I can join in New York City or elsewhere?
+							<li class="faqItem"><i class="fa fa-arrow-circle-right" style="font-size:24px;color: darkcyan;"></i>
+							<span>What sets your boot camp apart from others I can join in New York City or elsewhere?</span>
+								<ul class="innerList">
+									<li><i class="fa fa-circle" style="font-size: 12px; color: darkcyan;"></i>We offer a part-time program that allows working professionals to study web development without leaving work.</li>
+									<li><i class="fa fa-circle" style="font-size: 12px; color: darkcyan;"></i>
+									Students benefit from a robust set of professional development services to prepare them for success as they work to advance or change careers.</li>
+									<li><i class="fa fa-circle" style="font-size: 12px; color: darkcyan;"></i>Our curriculum is built based on the most in-demand technologies specific to the New York City market.</li>
+								</ul>
 							</li>
 						</ul>
 					</div>
@@ -415,14 +309,14 @@
 				<div class="info text-center">								
 					<h1 class="text-center">Get Program Info</h1>
 					<p>Step <span class="page">1</span> of 3</p>
-					<form name="botForm" method="get" action="contact.html" onsubmit="return validate(this,1,0)">
+					<form name="botForm" method="get" action="contact.html" autocomplete="off" onsubmit="return validate(this,1,0)">
 						
 						<div class="names">
-							<input type="text" name="firstName" placeholder="First Name" class="textfield" autocomplete="off">
-							<input type="text" name="lastName" placeholder="Last Name" class="textfield" autocomplete="off">	
+							<input type="text" name="firstName" placeholder="First Name" class="textfield" autocomplete="user-first-name" >
+							<input type="text" name="lastName" placeholder="Last Name" class="textfield" autocomplete="user-last-name">	
 						</div>	
 						<div class="email">
-							<input type="text" name="email" placeholder="Email Address" class="textfield" autocomplete="off">
+							<input type="text" name="email" placeholder="Email Address" class="textfield" autocomplete="user-email">
 						</div>	
 					
 						<div class="phone">
@@ -434,7 +328,8 @@
 							<label class="checkholder">&nbsp;
 								<input type="checkbox" name="privacy">
 								<span class="checkmark"></span>
-								<p>By checking this box, I consent to be contacted by the Institute of Web Technology, including by email or autodialed calls and text messages to any telephone number I provide, about my interest in furthering my career training. I understand my consent is not required to purchase or enroll. I also agree to the <a href="" target="_blank">Terms of Use</a> and <a href="" target="_blank">Privacy Policy</a>.</p>
+								<p>By checking this box, I consent to be contacted by the Institute of Web Technology, including by email or autodialed calls and text messages to any telephone number I provide, about my interest in furthering my career training. I understand my consent is not required to purchase or enroll. I also agree to the <a href="" target="_blank">Terms of Use</a> and <a href="" target="_blank">Privacy Policy</a>.
+								</p>
 							</label>
 						</div>
 						<span class="error"></span>					
@@ -459,38 +354,7 @@
 	</div> <!--end of main container-fluid-->
 	
 	<script src="main.js"></script>
-	<script>
-	
-		function autotab(current,to)
-		{
-			if (current.getAttribute && current.value.length==current.getAttribute("maxlength")) 
-			{
-				to.focus() 
-			}
-		}
-	
-		function validatePhone(field1, field2, field3) {
-		  
-			if (field1 == "" || field2 == "" || field3 == "") { 
-				return "All 3 fields are required";
-			}
-			else {
 			
-			//Concatenate the 3 input fields:
-				var phoneConcat = field1 + field2 + field3;
-			
-			  var phonenoPlain = /^\d{10}$/;
-			  //var phonenoFancy = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-			  
-			  if (phoneConcat.match(phonenoPlain)) {
-				  return "";
-			  }
-			  else {
-				 return "Invalid phone number format; Do this: 212-123-1234.\n";
-			  }
-			}
-		}
-	</script>		
   </body>
  </html>
    
