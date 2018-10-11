@@ -53,11 +53,12 @@ function validate(form,num,loc) {
 	let phone = document.querySelectorAll('.phone')[num];
 	let phoneOne = document.querySelectorAll('.phone input:first-of-type')[num];
 	let privPolicy = document.querySelectorAll('.privacy')[num];
-	let subm = document.querySelectorAll('.subm')[loc].disabled = true;
-	let subcurr = document.querySelectorAll('.subm')[num];
+	let subm = document.querySelectorAll('.subm')[loc]; // get the submit button of the other form on the page
+	let subcurr = document.querySelectorAll('.subm')[num]; // get the submit button for this form
 	let errmsg = document.querySelectorAll('.error')[num];
 	errmsg.innerHTML = "";
 	errmsg.style.visibility = "hidden";
+	subm.disabled = true; // disable the other submit button while this form is being validated
 	
 	if (formPage.innerHTML == 1) {
 		
@@ -88,7 +89,7 @@ function validate(form,num,loc) {
 		   phoneOne.focus();
 		   email.style.visibility = "hidden";
 		   formPage.innerHTML = 3;
-		   subcurr.value = "Submit";
+		   subcurr.value = "Submit"; // now change what the form button says (was "Continue")
 		   privPolicy.style.display = "flex";
 		   return false;
 		}
