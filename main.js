@@ -53,8 +53,10 @@ function validate(form,num,loc) {
 	let phone = document.querySelectorAll('.phone')[num];
 	let phoneOne = document.querySelectorAll('.phone input:first-of-type')[num];
 	let privPolicy = document.querySelectorAll('.privacy')[num];
-	let subm = document.querySelectorAll('.subm')[loc]; // get the submit button of the other form on the page
-	let subcurr = document.querySelectorAll('.subm')[num]; // get the submit button for this form
+	//get the submit button of the "other" form - remember there are 2
+	let subm = document.querySelectorAll('.subm')[loc];
+	
+	let subcurr = document.querySelectorAll('.subm')[num]; // get the submit button for this form (remember there are 2)
 	let errmsg = document.querySelectorAll('.error')[num];
 	errmsg.innerHTML = "";
 	errmsg.style.visibility = "hidden";
@@ -70,7 +72,6 @@ function validate(form,num,loc) {
 		  email.style.visibility = "visible";
 		  names.style.visibility = "hidden";
 		  formPage.innerHTML = 2;		  
-		  
 		  return false;
 		}
 		else {
@@ -89,7 +90,7 @@ function validate(form,num,loc) {
 		   phoneOne.focus();
 		   email.style.visibility = "hidden";
 		   formPage.innerHTML = 3;
-		   subcurr.value = "Submit"; // now change what the form button says (was "Continue")
+		   subcurr.value = "Submit"; // change what it says, from "Continue" to "submit"
 		   privPolicy.style.display = "flex";
 		   return false;
 		}
@@ -116,14 +117,16 @@ function validate(form,num,loc) {
 		}
 	}
 }
-
+// Modified so that names cannot be a string of spaces, which was possible before (but no good!)
 function validateForename(field){
-return (field == "") ? "No Forename was entered.\n" : ""
+//return (field == "") ? "No Forename was entered.\n" : ""
+  return (field.replace(/\s+/g,"") == "") ? "No Forename was entered.\n" : ""
 }
 
 function validateSurname(field)
 {
-return (field == "") ? "No Surname was entered.\n" : ""
+//return (field == "") ? "No Surname was entered.\n" : ""
+  return (field.replace(/\s+/g,"") == "") ? "No Surname was entered.\n" : ""
 }
 
 function validateEmail(field)
