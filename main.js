@@ -43,7 +43,7 @@ function autotab(current,to) {
 using classes, not ids. The loc parameter is used to indicate which sub-
 mit button to disable. Originally, I had 2 functions and numerous ids and
  I did not like that solution. Too much code duplication. Having 2 identical
-forms on the page presents some difficulties.*/
+forms on the page presents some difficulties/challenges.*/
   
 function validate(form,num,loc) {	
 
@@ -58,6 +58,7 @@ function validate(form,num,loc) {
 	
 	let subcurr = document.querySelectorAll('.subm')[num]; // get the submit button for this form (remember there are 2)
 	let errmsg = document.querySelectorAll('.error')[num];
+	
 	errmsg.innerHTML = "";
 	errmsg.style.visibility = "hidden";
 	subm.disabled = true; // disable the other submit button while this form is being validated
@@ -72,12 +73,12 @@ function validate(form,num,loc) {
 		  email.style.visibility = "visible";
 		  names.style.visibility = "hidden";
 		  formPage.innerHTML = 2;		  
-		  return false;
+		//  return false;
 		}
 		else {
 			subm.disabled = false;
 			showErrMsg(fail,errmsg);	
-			return false;
+		//	return false;
 		}
 	}
 	else if (formPage.innerHTML == 2) {
@@ -92,12 +93,12 @@ function validate(form,num,loc) {
 		   formPage.innerHTML = 3;
 		   subcurr.value = "Submit"; // change what it says, from "Continue" to "submit"
 		   privPolicy.style.display = "flex";
-		   return false;
+		 //  return false;
 		}
 	    else {
 			showErrMsg(fail,errmsg);	
 			subm.disabled = false;
-			return false;
+		//	return false;
 		}
 	}
 	else if (formPage.innerHTML == 3) {
@@ -106,18 +107,20 @@ function validate(form,num,loc) {
 			   form.phoneTwo.value, form.phoneThree.value);
 			
 		if (fail == "") {
-			return true;
+		//	return true;
 		   //alert("Your are done!");
 		  // return false;    temp - should return trueso that form gets subitted
+		  form.submit();
 		}
 	    else {
 			showErrMsg(fail,errmsg);	
 			subm.disabled = false;
-			return false;
+		//	return false;
 		}
 	}
 }
 // Modified so that names cannot be a string of spaces, which was possible before (but no good!)
+
 function validateForename(field){
 //return (field == "") ? "No Forename was entered.\n" : ""
   return (field.replace(/\s+/g,"") == "") ? "No Forename was entered.\n" : ""
@@ -170,7 +173,20 @@ function showErrMsg(fail,errmsg) {
 	errmsg.innerHTML = fail;
 	errmsg.style.visibility = "visible";
 }
+// 10/24/18 - there are 2 identical forms, top and bottom of page to make it a better UX? 
+// Since there are only 2, I think it's ok to use ids to access them rather than the form collection object
 
+let formTop = document.getElementById('formTop');
+let buttonTop = document.getElementById('buttonTop');
+let formBot = document.getElementById('formBot');
+let buttonBot = document.getElementById('buttonBot');
+	// pass the index for the classes used for each form since querySelectorAll is used
+	// pass the "opposing" button index so that it is disabled while current form is being validated
+	
+	buttonTop.addEventListener('click', function () {validate(formTop,0,1);});		
+		
+	buttonBot.addEventListener('click', function () {validate(formBot,1,0);});
+	
  let elburger = document.getElementById('burger');
  let eloverlay = document.getElementById('overlay');
 		 

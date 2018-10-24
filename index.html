@@ -1,6 +1,6 @@
 <!-- Temp using get instead of post on both form elts - this is for gh-pages - otherwise get 405 error --> 
 <!-- Form inputs for name and email have semantic names for autocomplete - this is because Chrome ignores on/off; Right now I don't want autocomplete, but perhaps it should be turned on in the future - is it truly better for the user experience? -->
-
+<!-- 10/24/18 - get rid of inline event handling on form element -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +14,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"> 
  
+  <!--<link href="two-forms.css" rel="stylesheet">-->
   <link href="main.css" rel="stylesheet">
  
+ <style>
+
+ </style>
  </head>
  <body>
 	<div class="container-fluid"> 
@@ -78,7 +82,9 @@
 					<div class="col-lg-6 info order-lg-1 text-center">
 						<h1>Get Program Info</h1>
 						<p>Step <span class="page">1</span> of 3</p>
-						<form name="topForm" method="get" action="contact.html" autocomplete="off" onsubmit="return validate(this,0,1)">
+						
+						<!--<form name="topForm" method="get" action="contact.html" autocomplete="off" onsubmit="return validate(this,0,1)">-->
+						<form id="formTop" name="topForm" method="get" action="contact.html" autocomplete="off">
 							<div class="names">
 								<input id="firstname" type="text" name="firstName" placeholder="First Name" class="textfield" autocomplete="user-first-name">
 								<input type="text" name="lastName" class="textfield" placeholder="Last Name" autocomplete="user-last-name">	
@@ -100,7 +106,8 @@
 								<p>By checking this box, I consent to be contacted by the Institute of Web Technology, including by email or autodialed calls and text messages to any telephone number I provide, about my interest in furthering my career training. I understand my consent is not required to purchase or enroll. I also agree to the <a href="" target="_blank">Terms of Use</a> and <a href="" target="_blank">Privacy Policy</a>.</p>
 							</div>
 							<span class="error"></span>
-							<input class="subm" type="submit" name="submit" value="Continue">
+							<!--<input class="subm" type="submit" name="submit" value="Continue">-->
+							<input id="buttonTop" class="subm" type="button" name="buttonTop" value="Continue">
 						</form>
 					</div> <!-- 2nd column -->
 				</div> <!-- end of row-->
@@ -305,7 +312,9 @@
 				<div class="info text-center">								
 					<h1 class="text-center">Get Program Info</h1>
 					<p>Step <span class="page">1</span> of 3</p>
-					<form name="botForm" method="get" action="contact.html" autocomplete="off" onsubmit="return validate(this,1,0)">
+					
+					<!--<form name="botForm" method="get" action="contact.html" autocomplete="off" onsubmit="return validate(this,1,0)">-->
+					<form id="formBot" name="botForm" method="get" action="contact.html" autocomplete="off">					
 						
 						<div class="names">
 							<input type="text" name="firstName" placeholder="First Name" class="textfield" autocomplete="user-first-name" >
@@ -329,7 +338,8 @@
 							</label>
 						</div>
 						<span class="error"></span>					
-						<input class="subm" type="submit" name="submit" value="Continue">
+					<!--<input class="subm" type="submit" name="submit" value="Continue">-->
+						<input id="buttonBot" class="subm" type="button" name="buttonBot" value="Continue">
 					</form>
 				</div>	
 			</div> 

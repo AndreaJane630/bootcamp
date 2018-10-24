@@ -89,7 +89,7 @@ ul {
   color: white;
   font-size: 36px;
 }
-#overlay {
+#overlay { 
 	display: none;
 }
 
@@ -167,7 +167,7 @@ video {
 	font-weight: bold;
 	text-transform: uppercase;
 }
-input[type='submit'] {
+input[type='button'] {
 	width: 95%;
 	height: 60px;
 	border-radius: 5px;
@@ -183,7 +183,7 @@ input[type='submit'] {
 	transition: .25s ease-out; /* make hover nice and smooth */
 }
 
-input[type='submit']:hover {
+input[type='button']:hover {
 	background-color: #01c6ae;
 }
 
@@ -802,7 +802,7 @@ form {
 	.info h1 {
 		font-size: 23px;
 	}
-	input[type="submit"] {
+	input[type="button"] {
 		font-size: 23px;
 	}
 	#program .info-text h3 {
@@ -900,7 +900,7 @@ form {
 	input {
 		font-size: 18px;
 	}
-	input[type="submit"] {
+	input[type="button"] {
 		font-size: 23px;
 	}	
 	::-webkit-input-placeholder { /*for (Chrome/Safari/Opera) input::placeholder*/
